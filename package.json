@@ -3138,10 +3138,10 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
-                                                        "name": "Go to definition",
+                                                        "name": "Go to declaration",
                                                         "icon": "symbol-function",
                                                         "type": "command",
-                                                        "command": "editor.action.revealDefinition"
+                                                        "command": "editor.action.revealDeclaration"
                                                     },
                                                     {
                                                         "key": "e",
@@ -3261,6 +3261,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -3445,10 +3452,10 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
-                                                        "name": "Go to definition",
+                                                        "name": "Go to declaration",
                                                         "icon": "symbol-function",
                                                         "type": "command",
-                                                        "command": "editor.action.revealDefinition"
+                                                        "command": "editor.action.revealDeclaration"
                                                     },
                                                     {
                                                         "key": "e",
@@ -3781,6 +3788,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -3938,10 +3952,10 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
-                                                        "name": "Go to definition",
+                                                        "name": "Go to declaration",
                                                         "icon": "symbol-function",
                                                         "type": "command",
-                                                        "command": "editor.action.revealDefinition"
+                                                        "command": "editor.action.revealDeclaration"
                                                     },
                                                     {
                                                         "key": "e",
@@ -4031,6 +4045,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -4174,10 +4195,10 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
-                                                        "name": "Go to definition",
+                                                        "name": "Go to declaration",
                                                         "icon": "symbol-function",
                                                         "type": "command",
-                                                        "command": "editor.action.revealDefinition"
+                                                        "command": "editor.action.revealDeclaration"
                                                     },
                                                     {
                                                         "key": "e",
@@ -4310,6 +4331,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -4547,10 +4575,10 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
-                                                        "name": "Go to definition",
+                                                        "name": "Go to declaration",
                                                         "icon": "symbol-function",
                                                         "type": "command",
-                                                        "command": "editor.action.revealDefinition"
+                                                        "command": "editor.action.revealDeclaration"
                                                     },
                                                     {
                                                         "key": "e",
@@ -4844,6 +4872,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -4994,6 +5029,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Go to declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.revealDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Go to definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -5203,6 +5245,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -5303,6 +5352,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Go to declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.revealDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Go to definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -5367,6 +5423,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -5709,10 +5772,10 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
-                                                        "name": "Go to definition",
+                                                        "name": "Go to declaration",
                                                         "icon": "symbol-function",
                                                         "type": "command",
-                                                        "command": "editor.action.revealDefinition"
+                                                        "command": "editor.action.revealDeclaration"
                                                     },
                                                     {
                                                         "key": "e",
@@ -6435,10 +6498,10 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
-                                                        "name": "Go to definition",
+                                                        "name": "Go to declaration",
                                                         "icon": "symbol-function",
                                                         "type": "command",
-                                                        "command": "editor.action.revealDefinition"
+                                                        "command": "editor.action.revealDeclaration"
                                                     },
                                                     {
                                                         "key": "e",
@@ -6514,6 +6577,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -6593,10 +6663,10 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
-                                                        "name": "Go to definition",
+                                                        "name": "Go to declaration",
                                                         "icon": "symbol-function",
                                                         "type": "command",
-                                                        "command": "editor.action.revealDefinition"
+                                                        "command": "editor.action.revealDeclaration"
                                                     },
                                                     {
                                                         "key": "e",
@@ -6672,6 +6742,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -6802,10 +6879,10 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
-                                                        "name": "Go to definition",
+                                                        "name": "Go to declaration",
                                                         "icon": "symbol-function",
                                                         "type": "command",
-                                                        "command": "editor.action.revealDefinition"
+                                                        "command": "editor.action.revealDeclaration"
                                                     },
                                                     {
                                                         "key": "e",
@@ -6967,6 +7044,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -7819,10 +7903,10 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
-                                                        "name": "Go to definition",
+                                                        "name": "Go to declaration",
                                                         "icon": "symbol-function",
                                                         "type": "command",
-                                                        "command": "editor.action.revealDefinition"
+                                                        "command": "editor.action.revealDeclaration"
                                                     },
                                                     {
                                                         "key": "e",
@@ -7891,6 +7975,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -8043,6 +8134,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Go to declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.revealDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Go to definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -8136,6 +8234,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -8229,6 +8334,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Go to declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.revealDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Go to definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
@@ -8293,6 +8405,13 @@
                                                 "bindings": [
                                                     {
                                                         "key": "d",
+                                                        "name": "Peek declaration",
+                                                        "icon": "symbol-function",
+                                                        "type": "command",
+                                                        "command": "editor.action.peekDeclaration"
+                                                    },
+                                                    {
+                                                        "key": "g",
                                                         "name": "Peek definition",
                                                         "icon": "symbol-function",
                                                         "type": "command",
