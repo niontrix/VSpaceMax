@@ -1,0 +1,36 @@
+[
+    {
+        "key": "b",
+        "name": "Copy buffer revision",
+        "icon": "file",
+        "type": "command",
+        "command": "magit.copy-buffer-revision"
+    },
+    {
+        "key": "r",
+        "name": "Show Ref",
+        "icon": "eye",
+        "type": "command",
+        "command": "magit.show-refs"
+    },
+    {
+        "key": "s",
+        "name": "Copy section value",
+        "icon": "list-selection",
+        "type": "command",
+        "command": "magit.copy-section-value"
+    },
+    {
+        "key": "y",
+        "name": "Yank a line",
+        "icon": "list-flat",
+        "type": "command",
+        "command": "vim.remap",
+        "args": {
+            "after": [
+                "y",
+                "y"
+            ]
+        }
+    }
+]

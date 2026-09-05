@@ -9950,17 +9950,20 @@
         ]
     },
     "scripts": {
-        "vscode:prepublish": "webpack --mode production",
-        "compile": "webpack --mode development",
-        "watch": "webpack --watch",
+        "vscode:prepublish": "node ./scripts/build-package-json.js && webpack --mode production",
+        "build:bindings": "node ./scripts/build-package-json.js",
+        "compile": "npm run build:bindings && webpack --mode development",
+        "watch": "npm run build:bindings && webpack --watch",
         "format": "prettier --write .",
         "format-check": "prettier --check .",
         "lint": "eslint src --ext ts",
-        "test": "npm run compile && npm run test-node && npm run test-web",
+        "test": "npm run test-build-package-json &&npm run compile && npm run test-node && npm run test-web",
         "test-node": "node ./dist/test/runTest-node.js",
         "test-web": "node ./dist/test/runTest-web.js",
+        "test-build-package-json": "node ./scripts/build-package-json.test.js",
         "generate-keybindings": "node ./scripts/keybindings.js",
-        "sort-bindings": "node ./scripts/sort.js"
+        "sort-bindings": "node ./scripts/sort.js",
+        "split-bindings": "node ./scripts/build-package-json.js --split"
     },
     "devDependencies": {
         "@types/glob": "^7.1.3",

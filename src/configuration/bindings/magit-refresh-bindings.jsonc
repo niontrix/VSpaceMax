@@ -1,0 +1,16 @@
+[
+    {
+        "key": "g",
+        "name": "Go cursor to top",
+        "icon": "arrow-up",
+        "type": "command",
+        "command": "cursorTop"
+    },
+    {
+        "key": "r",
+        "name": "Refresh magit buffer",
+        "icon": "refresh",
+        "type": "command",
+        "command": "magit.refresh"
+    }
+]

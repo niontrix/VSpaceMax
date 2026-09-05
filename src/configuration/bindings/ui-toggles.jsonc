@@ -1,0 +1,98 @@
+{
+    "key": "T",
+    "name": "+UI toggles",
+    "icon": "tools",
+    "type": "bindings",
+    "bindings": [
+        {
+            "key": "b",
+            "name": "Toggle side bar visibility",
+            "icon": "split-horizontal",
+            "type": "command",
+            "command": "workbench.action.toggleSidebarVisibility"
+        },
+        {
+            "key": "c",
+            "name": "Toggle centered layout",
+            "icon": "list-flat",
+            "type": "command",
+            "command": "workbench.action.toggleCenteredLayout"
+        },
+        {
+            "key": "i",
+            "name": "Select icon theme",
+            "icon": "symbol-misc",
+            "type": "command",
+            "command": "workbench.action.selectIconTheme"
+        },
+        {
+            "key": "j",
+            "name": "Toggle panel visibility",
+            "icon": "output",
+            "type": "command",
+            "command": "workbench.action.togglePanel"
+        },
+        {
+            "key": "m",
+            "name": "Toggle maximized panel",
+            "icon": "chevron-up",
+            "type": "command",
+            "command": "workbench.action.toggleMaximizedPanel"
+        },
+        {
+            "key": "s",
+            "name": "Select theme",
+            "icon": "paintcan",
+            "type": "command",
+            "command": "workbench.action.selectTheme"
+        },
+        {
+            "key": "t",
+            "name": "Toggle tool/activity bar visibility",
+            "icon": "tools",
+            "type": "command",
+            "command": "workbench.action.toggleActivityBarVisibility"
+        },
+        {
+            "key": "z",
+            "name": "Toggle zen mode",
+            "icon": "eye",
+            "type": "command",
+            "command": "workbench.action.toggleZenMode"
+        },
+        {
+            "key": "F",
+            "name": "Toggle full screen",
+            "icon": "screen-full",
+            "type": "command",
+            "command": "workbench.action.toggleFullScreen"
+        },
+        {
+            "key": "M",
+            "name": "Toggle minimap",
+            "icon": "symbol-ruler",
+            "type": "command",
+            "command": "editor.action.toggleMinimap"
+        },
+        {
+            "key": "T",
+            "name": "Toggle tab visibility",
+            "icon": "files",
+            "type": "conditional",
+            "bindings": [
+                {
+                    "key": "",
+                    "name": "Show editor tabs",
+                    "type": "command",
+                    "command": "workbench.action.showMultipleEditorTabs"
+                },
+                {
+                    "key": "when:editorTabsVisible",
+                    "name": "Hide editor tabs",
+                    "type": "command",
+                    "command": "workbench.action.hideEditorTabs"
+                }
+            ]
+        }
+    ]
+}

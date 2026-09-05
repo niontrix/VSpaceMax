@@ -1,0 +1,150 @@
+[
+    {
+        "key": " ",
+        "name": "Commands",
+        "icon": "rocket",
+        "type": "command",
+        "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "\t",
+        "name": "Last buffer",
+        "icon": "go-to-file",
+        "type": "commands",
+        "commands": [
+            "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+            "list.select"
+        ]
+    },
+    {
+        "key": "!",
+        "name": "Show terminal",
+        "icon": "terminal",
+        "type": "command",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "\"",
+        "name": "Open new external terminal",
+        "icon": "chevron-right",
+        "type": "command",
+        "command": "workbench.action.terminal.openNativeConsole"
+    },
+    {
+        "key": "$",
+        "name": "Run Recent Command in Terminal",
+        "icon": "terminal",
+        "type": "command",
+        "command": "workbench.action.terminal.runRecentCommand"
+    },
+    {
+        "key": "'",
+        "name": "Show terminal",
+        "icon": "terminal",
+        "type": "command",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "*",
+        "name": "Search in project with selection",
+        "icon": "search",
+        "type": "commands",
+        "commands": [
+            "editor.action.addSelectionToNextFindMatch",
+            "workbench.action.findInFiles",
+            "search.action.focusSearchList"
+        ]
+    },
+    {
+        "key": ".",
+        "name": "Repeat most recent action",
+        "icon": "redo",
+        "type": "command",
+        "command": "whichkey.repeatMostRecent",
+        "args": "vspacecode.bindings"
+    },
+    {
+        "key": "/",
+        "name": "Search in project",
+        "icon": "search",
+        "type": "command",
+        "command": "workbench.action.findInFiles"
+    },
+    {
+        "key": "0",
+        "name": "Focus on files explorer",
+        "icon": "list-tree",
+        "type": "command",
+        "command": "workbench.files.action.focusFilesExplorer"
+    },
+    {
+        "key": "1",
+        "name": "Focus 1st window",
+        "icon": "files",
+        "type": "command",
+        "command": "workbench.action.focusFirstEditorGroup"
+    },
+    {
+        "key": "2",
+        "name": "Focus 2nd window",
+        "icon": "files",
+        "type": "command",
+        "command": "workbench.action.focusSecondEditorGroup"
+    },
+    {
+        "key": "3",
+        "name": "Focus 3rd window",
+        "icon": "files",
+        "type": "command",
+        "command": "workbench.action.focusThirdEditorGroup"
+    },
+    {
+        "key": "4",
+        "name": "Focus 4th window",
+        "icon": "files",
+        "type": "command",
+        "command": "workbench.action.focusFourthEditorGroup"
+    },
+    {
+        "key": "5",
+        "name": "Focus 5th window",
+        "icon": "files",
+        "type": "command",
+        "command": "workbench.action.focusFifthEditorGroup"
+    },
+    {
+        "key": "6",
+        "name": "Focus 6th window",
+        "icon": "files",
+        "type": "command",
+        "command": "workbench.action.focusSixthEditorGroup"
+    },
+    {
+        "key": "7",
+        "name": "Focus 7th window",
+        "icon": "files",
+        "type": "command",
+        "command": "workbench.action.focusSeventhEditorGroup"
+    },
+    {
+        "key": "8",
+        "name": "Focus 8th window",
+        "icon": "files",
+        "type": "command",
+        "command": "workbench.action.focusEighthEditorGroup"
+    },
+    {
+        "key": ";",
+        "name": "Toggle comment",
+        "icon": "comment",
+        "type": "command",
+        "command": "editor.action.commentLine"
+    },
+    {
+        "key": "?",
+        "name": "Search keybindings",
+        "icon": "keyboard",
+        "type": "command",
+        "command": "whichkey.searchBindings"
+    }
+]

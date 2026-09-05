@@ -1,0 +1,29 @@
+{
+    "key": "t",
+    "name": "+Toggles",
+    "icon": "settings",
+    "type": "bindings",
+    "bindings": [
+        {
+            "key": "c",
+            "name": "Toggle find case sensitive",
+            "icon": "case-sensitive",
+            "type": "command",
+            "command": "toggleFindCaseSensitive"
+        },
+        {
+            "key": "l",
+            "name": "Toggle word wrap",
+            "icon": "word-wrap",
+            "type": "command",
+            "command": "editor.action.toggleWordWrap"
+        },
+        {
+            "key": "w",
+            "name": "Toggle render whitespace",
+            "icon": "whitespace",
+            "type": "command",
+            "command": "editor.action.toggleRenderWhitespace"
+        }
+    ]
+}
