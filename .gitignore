@@ -1,5 +1,7 @@
 out/
 dist/
+build/
+scripts/tests/test-package.json
 node_modules/
 .vscode-test/
 .vscode-test-web/

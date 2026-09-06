@@ -7,6 +7,36 @@ const { parse } = require("jsonc-parser");
 const projectRoot = path.resolve(__dirname, "..");
 const packageJsonPath = path.join(projectRoot, "package.json");
 const bindingDir = path.join(projectRoot, "src", "configuration", "bindings");
+const buildDir = path.join(projectRoot, "build");
+const buildPackageJsonPath = path.join(buildDir, "package.json");
+
+const bindingFilesInPackageOrder = [
+    "smart-select-expand-region.jsonc",
+    "tasks.jsonc",
+    "buffers.jsonc",
+    "compile-comments.jsonc",
+    "debug.jsonc",
+    "errors.jsonc",
+    "file.jsonc",
+    "git.jsonc",
+    "help.jsonc",
+    "insert.jsonc",
+    "jump-join-split.jsonc",
+    "layouts.jsonc",
+    "major.jsonc",
+    "project.jsonc",
+    "quit.jsonc",
+    "resume-repeat.jsonc",
+    "search-symbol.jsonc",
+    "toggles.jsonc",
+    "window.jsonc",
+    "text.jsonc",
+    "zoom-fold.jsonc",
+    "diff-compare.jsonc",
+    "frame.jsonc",
+    "show.jsonc",
+    "ui-toggles.jsonc",
+];
 
 function ensureDirectory(dirPath) {
     fs.mkdirSync(dirPath, { recursive: true });
@@ -21,73 +51,27 @@ function writeJson(filePath, value) {
     fs.writeFileSync(filePath, `${JSON.stringify(value, null, 4)}\n`, "utf8");
 }
 
-function toSlug(value) {
-    return String(value || "root")
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "") || "root";
-}
-
 function getConfigProperties(packageData) {
     return packageData.contributes.configuration[0].properties;
 }
 
-function splitMainBindings(packageData, outputDir) {
-    ensureDirectory(outputDir);
+function findBindingFile(fragmentDir, file) {
+    const candidates = [
+        path.join(fragmentDir, file),
+        path.join(fragmentDir, "..", "layers", "core", "bindings", file),
+    ];
 
-    const properties = getConfigProperties(packageData);
-    const bindings = properties["vspacecode.bindings"].default;
-
-    writeJson(path.join(outputDir, "magit-ref-bindings.jsonc"), properties["vspacecode.magitRefBindings"].default);
-    writeJson(path.join(outputDir, "magit-refresh-bindings.jsonc"), properties["vspacecode.magitRefreshBindings"].default);
-    writeJson(path.join(outputDir, "space-menu.jsonc"), bindings);
-
-    const directCommands = [];
-    const groupedBindings = [];
-
-    for (const binding of bindings) {
-        if (binding && Array.isArray(binding.bindings)) {
-            groupedBindings.push(binding);
-        } else {
-            directCommands.push(binding);
-        }
-    }
-
-    if (directCommands.length > 0) {
-        writeJson(path.join(outputDir, "direct-commands.jsonc"), directCommands);
-    }
-
-    for (const binding of groupedBindings) {
-        const fileName = `${toSlug(binding.name || binding.key)}.jsonc`;
-        writeJson(path.join(outputDir, fileName), binding);
-    }
+    return candidates.find((filePath) => fs.existsSync(filePath));
 }
 
 function mergeMainBindings(fragmentDir) {
-    const directCommandsPath = path.join(fragmentDir, "direct-commands.jsonc");
-    const spaceMenuPath = path.join(fragmentDir, "space-menu.jsonc");
+    const directCommandsPath = findBindingFile(fragmentDir, "direct-commands.jsonc");
+    const merged = readJsonc(directCommandsPath);
 
-    if (fs.existsSync(spaceMenuPath)) {
-        return readJsonc(spaceMenuPath);
-    }
-
-    const merged = [];
-
-    if (fs.existsSync(directCommandsPath)) {
-        merged.push(...readJsonc(directCommandsPath));
-    }
-
-    const jsoncFiles = fs
-        .readdirSync(fragmentDir)
-        .filter((file) => file.endsWith(".jsonc"))
-        .filter((file) => !["direct-commands.jsonc", "space-menu.jsonc", "magit-ref-bindings.jsonc", "magit-refresh-bindings.jsonc"].includes(file))
-        .sort();
-
-    for (const file of jsoncFiles) {
-        const entry = readJsonc(path.join(fragmentDir, file));
-        if (entry && !Array.isArray(entry)) {
-            merged.push(entry);
+    for (const file of bindingFilesInPackageOrder) {
+        const filePath = findBindingFile(fragmentDir, file);
+        if (filePath) {
+            merged.push(readJsonc(filePath));
         }
     }
 
@@ -113,28 +97,16 @@ function buildPackageJson(packageJsonInputPath, bindingFragmentDir) {
     return packageData;
 }
 
-function printUsage() {
-    console.log("Usage: node build-package-json.js [--split]");
+function buildPackageFile(packageJsonInputPath = packageJsonPath, outputPath = buildPackageJsonPath) {
+    const packageData = buildPackageJson(packageJsonInputPath, bindingDir);
+    ensureDirectory(path.dirname(outputPath));
+    writeJson(outputPath, packageData);
+    return outputPath;
 }
 
 function main() {
-    const args = process.argv.slice(2);
-
-    if (args.includes("--help") || args.includes("-h")) {
-        printUsage();
-        return;
-    }
-
-    if (args.includes("--split")) {
-        const packageData = readJsonc(packageJsonPath);
-        splitMainBindings(packageData, bindingDir);
-        console.log(`Split package bindings into ${bindingDir}`);
-        return;
-    }
-
-    const packageData = buildPackageJson(packageJsonPath, bindingDir);
-    writeJson(packageJsonPath, packageData);
-    console.log(`Rebuilt ${packageJsonPath} from fragments in ${bindingDir}`);
+    const outputPath = buildPackageFile();
+    console.log(`Built ${outputPath} from fragments in ${bindingDir}`);
 }
 
 if (require.main === module) {
@@ -143,6 +115,6 @@ if (require.main === module) {
 
 module.exports = {
     buildPackageJson,
-    splitMainBindings,
+    buildPackageFile,
     mergeMainBindings,
 };
