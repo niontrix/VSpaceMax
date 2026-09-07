@@ -6,37 +6,9 @@ const { parse } = require("jsonc-parser");
 
 const projectRoot = path.resolve(__dirname, "..");
 const packageJsonPath = path.join(projectRoot, "package.json");
-const bindingDir = path.join(projectRoot, "src", "configuration", "bindings");
+const configurationDir = path.join(projectRoot, "src", "configuration");
 const buildDir = path.join(projectRoot, "build");
 const buildPackageJsonPath = path.join(buildDir, "package.json");
-
-const bindingFilesInPackageOrder = [
-    "smart-select-expand-region.jsonc",
-    "tasks.jsonc",
-    "buffers.jsonc",
-    "compile-comments.jsonc",
-    "debug.jsonc",
-    "errors.jsonc",
-    "file.jsonc",
-    "git.jsonc",
-    "help.jsonc",
-    "insert.jsonc",
-    "jump-join-split.jsonc",
-    "layouts.jsonc",
-    "major.jsonc",
-    "project.jsonc",
-    "quit.jsonc",
-    "resume-repeat.jsonc",
-    "search-symbol.jsonc",
-    "toggles.jsonc",
-    "window.jsonc",
-    "text.jsonc",
-    "zoom-fold.jsonc",
-    "diff-compare.jsonc",
-    "frame.jsonc",
-    "show.jsonc",
-    "ui-toggles.jsonc",
-];
 
 function ensureDirectory(dirPath) {
     fs.mkdirSync(dirPath, { recursive: true });
@@ -55,50 +27,112 @@ function getConfigProperties(packageData) {
     return packageData.contributes.configuration[0].properties;
 }
 
-function findBindingFile(fragmentDir, file) {
-    const candidates = [
-        path.join(fragmentDir, file),
-        path.join(fragmentDir, "..", "layers", "core", "bindings", file),
-    ];
+/**
+ * Recursively collect all "*.jsonc" files in any folder named "bindings"
+ * below the configuration directory.
+ * @param {string} rootDir Directory to start the search from
+ * @returns {string[]} Absolute paths of the discovered binding files
+ */
+function collectBindingFiles(rootDir) {
+    const bindingFiles = [];
 
-    return candidates.find((filePath) => fs.existsSync(filePath));
-}
+    function walk(dir) {
+        const entries = fs.readdirSync(dir, { withFileTypes: true });
 
-function mergeMainBindings(fragmentDir) {
-    const directCommandsPath = findBindingFile(fragmentDir, "direct-commands.jsonc");
-    const merged = readJsonc(directCommandsPath);
+        for (const entry of entries) {
+            const entryPath = path.join(dir, entry.name);
 
-    for (const file of bindingFilesInPackageOrder) {
-        const filePath = findBindingFile(fragmentDir, file);
-        if (filePath) {
-            merged.push(readJsonc(filePath));
+            if (!entry.isDirectory()) {
+                continue;
+            }
+
+            if (entry.name === "bindings") {
+                for (const file of fs.readdirSync(entryPath)) {
+                    if (file.endsWith(".jsonc")) {
+                        bindingFiles.push(path.join(entryPath, file));
+                    }
+                }
+                // Bindings are not nested, so do not descend further.
+                continue;
+            }
+
+            walk(entryPath);
         }
     }
 
-    return merged;
+    if (fs.existsSync(rootDir)) {
+        walk(rootDir);
+    }
+
+    return bindingFiles;
 }
 
-function buildPackageJson(packageJsonInputPath, bindingFragmentDir) {
+/**
+ * Merge the discovered main binding files into a single binding tree.
+ * Files that contain an array of bindings are flattened into the tree.
+ * @param {string[]} filePaths Absolute paths of the discovered binding files
+ * @returns {object[]} The merged binding entries
+ */
+function mergeMainBindings(filePaths) {
+    const mergedBindings = [];
+
+    for (const filePath of filePaths) {
+        const bindings = readJsonc(filePath);
+        if (Array.isArray(bindings)) {
+            mergedBindings.push(...bindings);
+        } else {
+            mergedBindings.push(bindings);
+        }
+    }
+
+    return mergedBindings;
+}
+
+// Char-code compare so control/whitespace keys (e.g. "\t", " ") sort before letters.
+function compareByKey(a, b) {
+    return a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
+}
+
+/**
+ * Sort a binding array by "key" and recurse into any nested "bindings" arrays.
+ * @param {object[]} bindings A binding array
+ * @returns {object[]} The same array, sorted in place at every level
+ */
+function sortBindingsByKey(bindings) {
+    bindings.sort(compareByKey);
+    for (const binding of bindings) {
+        if (Array.isArray(binding.bindings)) {
+            sortBindingsByKey(binding.bindings);
+        }
+    }
+    return bindings;
+}
+
+function buildPackageJson(packageJsonInputPath, configurationRootDir = configurationDir) {
     const packageData = readJsonc(packageJsonInputPath);
     const properties = getConfigProperties(packageData);
 
-    if (fs.existsSync(path.join(bindingFragmentDir, "magit-ref-bindings.jsonc"))) {
-        properties["vspacecode.magitRefBindings"].default = readJsonc(path.join(bindingFragmentDir, "magit-ref-bindings.jsonc"));
+    const bindingFiles = collectBindingFiles(configurationRootDir);
+
+    for (const filePath of bindingFiles) {
+        switch (path.basename(filePath)) {
+            case "magit-ref-bindings.jsonc":
+                properties["vspacecode.magitRefBindings"].default = sortBindingsByKey(readJsonc(filePath));
+                break;
+            case "magit-refresh-bindings.jsonc":
+                properties["vspacecode.magitRefreshBindings"].default = sortBindingsByKey(readJsonc(filePath));
+                break;
+        }
     }
 
-    if (fs.existsSync(path.join(bindingFragmentDir, "magit-refresh-bindings.jsonc"))) {
-        properties["vspacecode.magitRefreshBindings"].default = readJsonc(path.join(bindingFragmentDir, "magit-refresh-bindings.jsonc"));
-    }
-
-    if (fs.existsSync(bindingFragmentDir)) {
-        properties["vspacecode.bindings"].default = mergeMainBindings(bindingFragmentDir);
-    }
+    const mainBindingFiles = bindingFiles.filter((filePath) => !path.basename(filePath).startsWith("magit-"));
+    properties["vspacecode.bindings"].default = sortBindingsByKey(mergeMainBindings(mainBindingFiles));
 
     return packageData;
 }
 
 function buildPackageFile(packageJsonInputPath = packageJsonPath, outputPath = buildPackageJsonPath) {
-    const packageData = buildPackageJson(packageJsonInputPath, bindingDir);
+    const packageData = buildPackageJson(packageJsonInputPath, configurationDir);
     ensureDirectory(path.dirname(outputPath));
     writeJson(outputPath, packageData);
     return outputPath;
@@ -106,7 +140,7 @@ function buildPackageFile(packageJsonInputPath = packageJsonPath, outputPath = b
 
 function main() {
     const outputPath = buildPackageFile();
-    console.log(`Built ${outputPath} from fragments in ${bindingDir}`);
+    console.log(`Built ${outputPath} from binding fragments in ${configurationDir}`);
 }
 
 if (require.main === module) {
@@ -116,5 +150,7 @@ if (require.main === module) {
 module.exports = {
     buildPackageJson,
     buildPackageFile,
+    collectBindingFiles,
     mergeMainBindings,
+    sortBindingsByKey,
 };
