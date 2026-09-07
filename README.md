@@ -43,3 +43,11 @@ This project is maintained by different [people](https://github.com/VSpaceCode/V
 -   [Intellimacs](https://github.com/MarcoIeni/intellimacs) - Spacemacs' like key bindings for IntelliJ platform
 -   [Spaceclipse](https://github.com/MarcoIeni/spaceclipse) - Spacemacs’ like key bindings for Eclipse
 -   [SpaceVim](https://github.com/SpaceVim/SpaceVim) - A community-driven modular vim distribution
+
+## TODOS
+
+- [ ] Add keybinding JSONs in alphabetic order of the main character they represent
+- [ ] Split major mode keybindings into separate files
+- [ ] Create layers for major modes and other bindings
+- [ ] Fix find-file Tab keybinding duplicating selected folder at end of path
+- [ ] Add a Buffer ring for switching between buffers like in Spacemacs
