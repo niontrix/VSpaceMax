@@ -27,6 +27,20 @@ function getConfigProperties(packageData) {
     return packageData.contributes.configuration[0].properties;
 }
 
+// Hardcoded shell for the major menu (key: "m", name: "+Major", icon: "code", type: "conditional")
+const MAJOR_MENU_SHELL = { key: "m", name: "+Major", icon: "code", type: "conditional", bindings: [] };
+
+/**
+ * Check if a binding file is a language-major fragment (layers/languages/<lang>/bindings/major.jsonc).
+ * @param {string} filePath Absolute path to the binding file
+ * @returns {boolean} True if this is a language-major fragment
+ */
+function isLanguageMajorFragment(filePath) {
+    // Matches any path of the form .../layers/languages/<language>/bindings/major.jsonc
+    const posixPath = filePath.split(path.sep).join("/");
+    return /(^|\/)layers\/languages\/[^/]+\/bindings\/major\.jsonc$/.test(posixPath);
+}
+
 /**
  * Recursively collect all "*.jsonc" files in any folder named "bindings"
  * below the configuration directory.
@@ -114,7 +128,26 @@ function buildPackageJson(packageJsonInputPath, configurationRootDir = configura
 
     const bindingFiles = collectBindingFiles(configurationRootDir);
 
+    // Partition binding files: magit files, language-major fragments, and main binding files
+    const magitFiles = [];
+    const languageMajorFiles = [];
+    const mainBindingFiles = [];
+
     for (const filePath of bindingFiles) {
+        const basename = path.basename(filePath);
+        if (basename === "magit-ref-bindings.jsonc") {
+            magitFiles.push(filePath);
+        } else if (basename === "magit-refresh-bindings.jsonc") {
+            magitFiles.push(filePath);
+        } else if (isLanguageMajorFragment(filePath)) {
+            languageMajorFiles.push(filePath);
+        } else {
+            mainBindingFiles.push(filePath);
+        }
+    }
+
+    // Process magit files
+    for (const filePath of magitFiles) {
         switch (path.basename(filePath)) {
             case "magit-ref-bindings.jsonc":
                 properties["vspacecode.magitRefBindings"].default = sortBindingsByKey(readJsonc(filePath));
@@ -125,8 +158,15 @@ function buildPackageJson(packageJsonInputPath, configurationRootDir = configura
         }
     }
 
-    const mainBindingFiles = bindingFiles.filter((filePath) => !path.basename(filePath).startsWith("magit-"));
-    properties["vspacecode.bindings"].default = sortBindingsByKey(mergeMainBindings(mainBindingFiles));
+    // Merge language-major fragments into the "m" menu shell
+    const majorMenuBindings = languageMajorFiles.map((filePath) => readJsonc(filePath));
+    // Create a fresh copy of the shell to avoid mutation across runs
+    const majorMenuNode = { ...MAJOR_MENU_SHELL, bindings: majorMenuBindings };
+
+    // Merge main binding files (excluding magit and language-major), then append the "m" node
+    const allBindings = mergeMainBindings(mainBindingFiles);
+    allBindings.push(majorMenuNode);
+    properties["vspacecode.bindings"].default = sortBindingsByKey(allBindings);
 
     return packageData;
 }
