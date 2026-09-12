@@ -26,6 +26,19 @@
             "command": "editor.action.marker.nextInFiles"
         },
         {
+            "keys": "c.y",
+            "name": "Copy and comment lines",
+            "type": "command",
+            "command": "runCommands",
+            "args": {
+                "commands":[
+                    "editor.action.copyLinesUpAction",
+                    "editor.action.commentLine",
+                    "cursorDown"
+                ]
+            }
+        },
+        {
             "key": "N",
             "name": "Previous error",
             "icon": "arrow-up",

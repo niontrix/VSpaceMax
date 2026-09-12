@@ -46,8 +46,12 @@ This project is maintained by different [people](https://github.com/VSpaceCode/V
 
 ## TODOS
 
-- [ ] Add keybinding JSONs in alphabetic order of the main character they represent
-- [ ] Split major mode keybindings into separate files
-- [ ] Create layers for major modes and other bindings
-- [ ] Fix find-file Tab keybinding duplicating selected folder at end of path
+- [x] Add keybinding JSONs in alphabetic order of the main character they represent
+- [x] Split major mode keybindings into separate files
+- [x] Create layers for major modes and other bindings
+- [x] Fix find-file Tab keybinding duplicating selected folder at end of path
+- [ ] Add file save as command to vscode-file-browser
 - [ ] Add a Buffer ring for switching between buffers like in Spacemacs
+- [ ] Space should work everywhere (e.g. in the terminal, markdown preview, etc.)
+- [ ] Add `g` multi-cursor bindings
+- [ ] `<SPC> "` should open a new terminal in the folder where the current file resides
