@@ -31,14 +31,14 @@ function getConfigProperties(packageData) {
 const MAJOR_MENU_SHELL = { key: "m", name: "+Major", icon: "code", type: "conditional", bindings: [] };
 
 /**
- * Check if a binding file is a language-major fragment (layers/languages/<lang>/bindings/major.jsonc).
+ * Check if a binding file is a language-major fragment (layers/languages/<lang>/bindings/major.js).
  * @param {string} filePath Absolute path to the binding file
  * @returns {boolean} True if this is a language-major fragment
  */
 function isLanguageMajorFragment(filePath) {
-    // Matches any path of the form .../layers/languages/<language>/bindings/major.jsonc
+    // Matches any path of the form .../layers/languages/<language>/bindings/major.js
     const posixPath = filePath.split(path.sep).join("/");
-    return /(^|\/)layers\/languages\/[^/]+\/bindings\/major\.jsonc$/.test(posixPath);
+    return /(^|\/)layers\/languages\/[^/]+\/bindings\/major\.js$/.test(posixPath);
 }
 
 /**
@@ -62,7 +62,7 @@ function collectBindingFiles(rootDir) {
 
             if (entry.name === "bindings") {
                 for (const file of fs.readdirSync(entryPath)) {
-                    if (file.endsWith(".jsonc")) {
+                    if (file.endsWith(".jsonc") || file.endsWith(".js")) {
                         bindingFiles.push(path.join(entryPath, file));
                     }
                 }
@@ -158,8 +158,9 @@ function buildPackageJson(packageJsonInputPath, configurationRootDir = configura
         }
     }
 
-    // Merge language-major fragments into the "m" menu shell
-    const majorMenuBindings = languageMajorFiles.map((filePath) => readJsonc(filePath));
+    // Merge language-major fragments into the "m" menu shell.
+    // The major.js files are CommonJS modules whose default export is the language binding node.
+    const majorMenuBindings = languageMajorFiles.map((filePath) => require(filePath));
     // Create a fresh copy of the shell to avoid mutation across runs
     const majorMenuNode = { ...MAJOR_MENU_SHELL, bindings: majorMenuBindings };
 
