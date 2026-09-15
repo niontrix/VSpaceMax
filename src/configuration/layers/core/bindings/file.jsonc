@@ -5,6 +5,13 @@
     "type": "bindings",
     "bindings": [
         {
+            "key": "c",
+            "name": "Save file as",
+            "icon": "save",
+            "type": "command",
+            "command": "workbench.action.files.saveAs"
+        },
+        {
             "key": "f",
             "name": "Open file/folder",
             "icon": "folder-opened",

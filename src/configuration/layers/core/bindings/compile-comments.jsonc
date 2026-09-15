@@ -26,7 +26,7 @@
             "command": "editor.action.marker.nextInFiles"
         },
         {
-            "keys": "c.y",
+            "key": "c.y",
             "name": "Copy and comment lines",
             "type": "command",
             "command": "runCommands",
