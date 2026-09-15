@@ -7,7 +7,7 @@
     "author": {
         "name": "Steven Guh"
     },
-    "version": "0.10.20",
+    "version": "0.11.0",
     "engines": {
         "vscode": "^1.67.0"
     },
@@ -189,7 +189,8 @@
         "vscode:prepublish": "npm run compile",
         "build:bindings": "node ./scripts/build-package-json.js",
         "compile": "npm run build:bindings && webpack --mode development",
-        "build:extension": "npm run compile && node ./scripts/stage-extension.js",
+        "sort-bindings": "node ./scripts/sort.js",
+        "build:extension": "npm run compile && npm run sort-bindings && node ./scripts/stage-extension.js",
         "package:extension": "npm run build:extension && cd build && npx vsce package --no-dependencies",
         "watch": "npm run build:bindings && webpack --watch",
         "format": "prettier --write .",
@@ -199,8 +200,7 @@
         "test-node": "node ./dist/test/runTest-node.js",
         "test-web": "node ./dist/test/runTest-web.js",
         "test-build-package-json": "node ./scripts/tests/build-package-json.test.js",
-        "generate-keybindings": "node ./scripts/keybindings.js",
-        "sort-bindings": "node ./scripts/sort.js"
+        "generate-keybindings-md": "node ./scripts/keybindings.js"
     },
     "devDependencies": {
         "@types/glob": "^7.1.3",

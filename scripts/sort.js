@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const package = JSON.parse(fs.readFileSync("./package.json"));
+const package = JSON.parse(fs.readFileSync("./build/package.json"));
 const defaultBindings =
     package.contributes.configuration[0].properties["vspacecode.bindings"]
         .default;
@@ -16,7 +16,7 @@ while (queue.length > 0) {
     bindings.sort(compareFunction);
 }
 
-fs.writeFileSync("./package.json", JSON.stringify(package, null, "\t") + "\n");
+fs.writeFileSync("./build/package.json", JSON.stringify(package, null, "\t") + "\n");
 
 function getType(b) {
     let type = b.type;
@@ -61,7 +61,7 @@ function getKeyTypeOrder(b) {
  * @returns a shifted character for ordering
  */
 function codePointOrder(a) {
-    codePoint = a.codePointAt(0);
+    var codePoint = a.codePointAt(0);
 
     if (codePoint >= 65 && codePoint <= 90) {
         // shift A-Z back to the end of ASCII set

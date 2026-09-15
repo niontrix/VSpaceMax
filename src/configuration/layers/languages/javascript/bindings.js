@@ -1,8 +1,11 @@
+const testBindings = require("../../_shared/testing");
+
 module.exports = {
     key: "languageId:javascript",
     name: "JavaScript",
     type: "bindings",
     bindings: [
+        testBindings,
         {
             key: "=",
             name: "+Format",
