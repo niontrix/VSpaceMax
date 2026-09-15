@@ -190,7 +190,7 @@
         "build:bindings": "node ./scripts/build-package-json.js",
         "compile": "npm run build:bindings && webpack --mode development",
         "sort-bindings": "node ./scripts/sort.js",
-        "build:extension": "npm run compile && npm run sort-bindings && node ./scripts/stage-extension.js",
+        "build:extension": "npm run compile && node ./scripts/stage-extension.js && npm run sort-bindings",
         "package:extension": "npm run build:extension && cd build && npx vsce package --no-dependencies",
         "watch": "npm run build:bindings && webpack --watch",
         "format": "prettier --write .",
