@@ -1,8 +1,11 @@
+const refactorBindings = require("../../_shared/refactoring");
+
 module.exports = {
     key: "languageId:typescript",
     name: "TypeScript",
     type: "bindings",
     bindings: [
+        refactorBindings,
         {
             key: "=",
             name: "+Format",

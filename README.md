@@ -56,3 +56,4 @@ This project is maintained by different [people](https://github.com/VSpaceCode/V
 - [ ] Space should work everywhere (e.g. in the terminal, markdown preview, etc.)
 - [ ] Add `g` multi-cursor bindings
 - [ ] Add a command that lets users create and set custom keybinding contexts on-the-fly (e.g. isTerminalNormalMode), so they could for example have modal keybindings for the terminal
+- [ ] Add `undo tree` vscode extension as a dependency

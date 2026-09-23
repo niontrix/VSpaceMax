@@ -1,4 +1,5 @@
 const testBindings = require("../../_shared/testing");
+const refactorBindings = require("../../_shared/refactoring");
 
 module.exports = {
     key: "languageId:javascript",
@@ -6,6 +7,7 @@ module.exports = {
     type: "bindings",
     bindings: [
         testBindings,
+        refactorBindings,
         {
             key: "=",
             name: "+Format",
