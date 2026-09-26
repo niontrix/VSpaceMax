@@ -1,0 +1,71 @@
+{
+    "key": "$",
+    "name": "+AI / LLM",
+    "icon": "sparkle",
+    "type": "bindings",
+    "bindings": [
+        {
+            "key": "a",
+            "name": "Add Selection to Chat",
+            "icon": "code",
+            "type": "command",
+            "command": "workbench.action.chat.attachSelection"
+        },
+        {
+            "key": "A",
+            "name": "Open Agents Window",
+            "icon": "code",
+            "type": "command",
+            "command": "workbench.action.openAgentsWindow"
+        },
+        {
+            "key": "c",
+            "name": "View Chat",
+            "icon": "code",
+            "type": "command",
+            "command": "workbench.action.chat.open"
+        },
+        {
+            "key": "C",
+            "name": "Ask in Chat",
+            "icon": "code",
+            "type": "command",
+            "command": "inlineChat.askInChat"
+        },
+        {
+            "key": "e",
+            "name": "Explain in Chat",
+            "icon": "code",
+            "type": "command",
+            "command": "github.copilot.chat.explain"
+        },
+        {
+            "key": "i",
+            "name": "Open Inline Chat",
+            "icon": "code",
+            "type": "command",
+            "command": "inlineChat.start"
+        },
+        {
+            "key": "I",
+            "name": "Insert At Cursor",
+            "icon": "code",
+            "type": "command",
+            "command": "workbench.action.chat.insertCodeBlock"
+        },
+        {
+            "key": "u",
+            "name": "Undo Chat Edits",
+            "icon": "code",
+            "type": "command",
+            "command": "chatEditor.action.reject"
+        },
+        {
+            "key": "q",
+            "name": "Open Quick Chat",
+            "icon": "code",
+            "type": "command",
+            "command": "workbench.action.openQuickChat"
+        }
+    ]
+}
