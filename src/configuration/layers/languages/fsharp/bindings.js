@@ -1,8 +1,13 @@
+const testBindings = require("../../_shared/tests");
+const refactorBindings = require("../../_shared/refactor");
+
 module.exports = {
     key: "languageId:fsharp",
     name: "F#",
     type: "bindings",
     bindings: [
+        refactorBindings,
+        testBindings,
         {
             key: "=",
             name: "+Format",
@@ -171,21 +176,6 @@ module.exports = {
                     icon: "symbol-reference",
                     type: "command",
                     command: "references-view.findReferences"
-                }
-            ]
-        },
-        {
-            key: "r",
-            name: "+Refactor",
-            icon: "edit",
-            type: "bindings",
-            bindings: [
-                {
-                    key: "r",
-                    name: "Rename symbol",
-                    icon: "symbol-keyword",
-                    type: "command",
-                    command: "editor.action.rename"
                 }
             ]
         },

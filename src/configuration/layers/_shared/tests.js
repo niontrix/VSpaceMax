@@ -1,6 +1,7 @@
 module.exports = {
     key: "t",
-    name: "+Testing",
+    name: "+Tests",
+    icon: "beaker",
     type: "bindings",
     bindings: [
         {

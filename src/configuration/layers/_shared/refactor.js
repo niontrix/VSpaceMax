@@ -1,6 +1,7 @@
 module.exports = {
     key: "r",
-    name: "+Refactoring",
+    name: "+Refactor",
+    icon: "edit",
     type: "bindings",
     bindings: [
         {

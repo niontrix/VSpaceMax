@@ -1,5 +1,5 @@
-const testBindings = require("../../_shared/testing");
-const refactorBindings = require("../../_shared/refactoring");
+const testBindings = require("../../_shared/tests");
+const refactorBindings = require("../../_shared/refactor");
 
 module.exports = {
     key: "languageId:javascript",

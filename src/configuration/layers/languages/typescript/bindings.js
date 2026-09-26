@@ -1,10 +1,12 @@
-const refactorBindings = require("../../_shared/refactoring");
+const testBindings = require("../../_shared/tests");
+const refactorBindings = require("../../_shared/refactor");
 
 module.exports = {
     key: "languageId:typescript",
     name: "TypeScript",
     type: "bindings",
     bindings: [
+        testBindings,
         refactorBindings,
         {
             key: "=",
