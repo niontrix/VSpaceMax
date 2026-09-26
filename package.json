@@ -1,15 +1,15 @@
 {
-    "name": "vspacecode",
+    "name": "vspacemax",
     "preview": true,
-    "displayName": "VSpaceCode",
-    "description": "Spacemacs like keybindings for Visual Studio Code",
-    "publisher": "VSpaceCode",
+    "displayName": "VSpaceMax",
+    "description": "The Spacemacs experience for Visual Studio Code",
+    "publisher": "niontrix",
     "author": {
-        "name": "Steven Guh"
+        "name": "Tobias Heinlein"
     },
-    "version": "0.11.0",
+    "version": "0.1.0",
     "engines": {
-        "vscode": "^1.67.0"
+        "vscode": "^1.75.0"
     },
     "icon": "resources/logo.png",
     "galleryBanner": {
@@ -41,23 +41,16 @@
         "workspace"
     ],
     "license": "SEE LICENSE IN LICENSE.txt",
-    "homepage": "https://github.com/VSpaceCode/VSpaceCode",
+    "homepage": "https://github.com/niontrix/VSpaceMax",
     "repository": {
         "type": "git",
-        "url": "https://github.com/VSpaceCode/VSpacecode.git"
+        "url": "https://github.com/niontrix/VSpaceMax.git"
     },
     "bugs": {
-        "url": "https://github.com/VSpaceCode/VSpaceCode/issues"
+        "url": "https://github.com/niontrix/VSpaceMax/issues"
     },
     "activationEvents": [
-        "onStartupFinished",
-        "onCommand:vspacecode.space",
-        "onCommand:vspacecode.showMagitRefMenu",
-        "onCommand:vspacecode.showMagitRefreshMenu",
-        "onCommand:vspacecode.configure",
-        "onCommand:vspacecode.configureSettings",
-        "onCommand:vspacecode.configureKeybindings",
-        "onCommand:vspacecode.openDocumentationUrl"
+        "onStartupFinished"
     ],
     "main": "./dist/extension-node",
     "browser": "./dist/extension-web",
