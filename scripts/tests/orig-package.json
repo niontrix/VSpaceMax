@@ -220,13 +220,6 @@
 								"command": "workbench.action.terminal.openNativeConsole"
 							},
 							{
-								"key": "$",
-								"name": "Run Recent Command in Terminal",
-								"icon": "terminal",
-								"type": "command",
-								"command": "workbench.action.terminal.runRecentCommand"
-							},
-							{
 								"key": "'",
 								"name": "Open terminal",
 								"icon": "terminal",
@@ -340,6 +333,13 @@
 								"command": "whichkey.searchBindings"
 							},
 							{
+								"key": "`",
+								"name": "Run Recent Command in Terminal",
+								"icon": "terminal",
+								"type": "command",
+								"command": "workbench.action.terminal.runRecentCommand"
+							},
+							{
 								"key": "v",
 								"name": "Smart select/expand region",
 								"icon": "selection",
@@ -359,6 +359,77 @@
 										"icon": "remove",
 										"type": "command",
 										"command": "editor.action.smartSelect.shrink"
+									}
+								]
+							},
+							{
+								"key": "$",
+								"name": "+AI / LLM",
+								"icon": "sparkle",
+								"type": "bindings",
+								"bindings": [
+									{
+										"key": "a",
+										"name": "Add Selection to Chat",
+										"icon": "code",
+										"type": "command",
+										"command": "workbench.action.chat.attachSelection"
+									},
+									{
+										"key": "c",
+										"name": "Open Chat",
+										"icon": "code",
+										"type": "command",
+										"command": "workbench.action.openChat"
+									},
+									{
+										"key": "e",
+										"name": "Explain in Chat",
+										"icon": "code",
+										"type": "command",
+										"command": "github.copilot.chat.explain"
+									},
+									{
+										"key": "i",
+										"name": "Open Inline Chat",
+										"icon": "code",
+										"type": "command",
+										"command": "inlineChat.start"
+									},
+									{
+										"key": "q",
+										"name": "Open Quick Chat",
+										"icon": "code",
+										"type": "command",
+										"command": "workbench.action.openQuickChat"
+									},
+									{
+										"key": "u",
+										"name": "Undo Chat Edits",
+										"icon": "code",
+										"type": "command",
+										"command": "chatEditor.action.reject"
+									},
+									{
+										"key": "A",
+										"name": "Open Agents Window",
+										"icon": "code",
+										"type": "command",
+										"command": "workbench.action.openAgentsWindow"
+									},
+									{
+										"key": "C",
+										"name": "Ask in Chat",
+										"icon": "code",
+										"type": "command",
+										"command": "inlineChat.askInChat"
+									},
+									{
+										"key": "I",
+										"name": "Insert At Cursor",
+										"icon": "code",
+										"type": "command",
+										"command": "workbench.action.chat.insertCodeBlock"
 									}
 								]
 							},
@@ -2038,6 +2109,348 @@
 														"icon": "symbol-reference",
 														"type": "command",
 														"command": "editor.action.referenceSearch.trigger"
+													}
+												]
+											}
+										]
+									},
+									{
+										"key": "languageId:civet",
+										"name": "Civet",
+										"type": "bindings",
+										"bindings": [
+											{
+												"key": "=",
+												"name": "+Format",
+												"icon": "list-flat",
+												"type": "bindings",
+												"bindings": [
+													{
+														"key": "=",
+														"name": "Format region or buffer",
+														"icon": "list-flat",
+														"type": "command",
+														"command": "editor.action.format"
+													},
+													{
+														"key": "b",
+														"name": "Format buffer",
+														"icon": "file",
+														"type": "command",
+														"command": "editor.action.formatDocument"
+													},
+													{
+														"key": "c",
+														"name": "Format changes",
+														"icon": "diff",
+														"type": "command",
+														"command": "editor.action.formatChanges"
+													},
+													{
+														"key": "s",
+														"name": "Format selection",
+														"icon": "selection",
+														"type": "command",
+														"command": "editor.action.formatSelection"
+													},
+													{
+														"key": "B",
+														"name": "+Format buffer with formatter",
+														"icon": "file",
+														"type": "command",
+														"command": "editor.action.formatDocument.multiple"
+													},
+													{
+														"key": "S",
+														"name": "+Format selection with formatter",
+														"icon": "selection",
+														"type": "command",
+														"command": "editor.action.formatSelection.multiple"
+													}
+												]
+											},
+											{
+												"key": "g",
+												"name": "+Go to",
+												"icon": "go-to-file",
+												"type": "bindings",
+												"bindings": [
+													{
+														"key": "d",
+														"name": "Go to declaration",
+														"icon": "symbol-function",
+														"type": "command",
+														"command": "editor.action.revealDeclaration"
+													},
+													{
+														"key": "g",
+														"name": "Go to definition",
+														"icon": "symbol-function",
+														"type": "command",
+														"command": "editor.action.revealDefinition"
+													},
+													{
+														"key": "h",
+														"name": "Show call hierarchy",
+														"icon": "type-hierarchy",
+														"type": "command",
+														"command": "references-view.showCallHierarchy"
+													},
+													{
+														"key": "r",
+														"name": "Go to reference",
+														"icon": "symbol-reference",
+														"type": "command",
+														"command": "editor.action.goToReferences"
+													},
+													{
+														"key": "s",
+														"name": "Go to symbol in buffer",
+														"icon": "file",
+														"type": "command",
+														"command": "workbench.action.gotoSymbol"
+													},
+													{
+														"key": "t",
+														"name": "Go to type definition",
+														"icon": "symbol-struct",
+														"type": "command",
+														"command": "editor.action.goToTypeDefinition"
+													},
+													{
+														"key": "I",
+														"name": "Find implementations",
+														"icon": "symbol-module",
+														"type": "command",
+														"command": "references-view.findImplementations"
+													},
+													{
+														"key": "R",
+														"name": "Find references",
+														"icon": "symbol-reference",
+														"type": "command",
+														"command": "references-view.findReferences"
+													},
+													{
+														"key": "S",
+														"name": "Go to symbol in project",
+														"icon": "project",
+														"type": "command",
+														"command": "workbench.action.showAllSymbols"
+													}
+												]
+											},
+											{
+												"key": "r",
+												"name": "+Refactor",
+												"icon": "edit",
+												"type": "bindings",
+												"bindings": [
+													{
+														"key": "c",
+														"name": "Copy",
+														"command": "editor.action.codeAction",
+														"args": {
+															"kind": "refactor.copy"
+														}
+													},
+													{
+														"key": "d",
+														"name": "Delete",
+														"command": "editor.action.codeAction",
+														"args": {
+															"kind": "refactor.delete"
+														}
+													},
+													{
+														"key": "e",
+														"name": "Extract",
+														"command": "editor.action.codeAction",
+														"args": {
+															"kind": "refactor.extract"
+														}
+													},
+													{
+														"key": "f",
+														"name": "Fix all",
+														"command": "editor.action.codeAction",
+														"args": {
+															"kind": "refactor.fixAll"
+														}
+													},
+													{
+														"key": "i",
+														"name": "Inline",
+														"command": "editor.action.codeAction",
+														"args": {
+															"kind": "refactor.inline"
+														}
+													},
+													{
+														"key": "m",
+														"name": "Move",
+														"command": "editor.action.codeAction",
+														"args": {
+															"kind": "refactor.move"
+														}
+													},
+													{
+														"key": "o",
+														"name": "Organize imports",
+														"command": "editor.action.organizeImports"
+													},
+													{
+														"key": "q",
+														"name": "Quick fix",
+														"command": "editor.action.quickFix"
+													},
+													{
+														"key": "r",
+														"name": "Rename",
+														"command": "editor.action.rename"
+													},
+													{
+														"key": "s",
+														"name": "Surround with",
+														"command": "editor.action.codeAction",
+														"args": {
+															"kind": "refactor.surroundWith"
+														}
+													}
+												]
+											},
+											{
+												"key": "t",
+												"name": "+Tests",
+												"icon": "beaker",
+												"type": "bindings",
+												"bindings": [
+													{
+														"key": "c",
+														"name": "Run tests with coverage",
+														"icon": "beaker",
+														"type": "command",
+														"command": "testing.runWithCoverage"
+													},
+													{
+														"key": "d",
+														"name": "Debug test at cursor",
+														"icon": "testing-debug-icon",
+														"type": "command",
+														"command": "testing.debugTestAtCursor"
+													},
+													{
+														"key": "f",
+														"name": "Run failed tests",
+														"icon": "testing-failed-icon",
+														"type": "command",
+														"command": "testing.reRunFailTests"
+													},
+													{
+														"key": "r",
+														"name": "Run test at cursor",
+														"icon": "testing-run-icon",
+														"type": "command",
+														"command": "testing.runTestAtCursor"
+													},
+													{
+														"key": "C",
+														"name": "Clear test results",
+														"icon": "trash",
+														"type": "command",
+														"command": "testing.clearTestResults"
+													},
+													{
+														"key": "D",
+														"name": "Debug failed tests from last run",
+														"icon": "testing-debug-icon",
+														"type": "command",
+														"command": "testing.debugFailedFromLastRun"
+													},
+													{
+														"key": "F",
+														"name": "Run tests in current file",
+														"icon": "file",
+														"type": "command",
+														"command": "testing.runCurrentFile"
+													},
+													{
+														"key": "R",
+														"name": "Run all tests",
+														"icon": "beaker",
+														"type": "command",
+														"command": "testing.runAll"
+													},
+													{
+														"key": "a",
+														"name": "+AI/Copilot",
+														"type": "bindings",
+														"bindings": [
+															{
+																"key": "f",
+																"name": "Fix test failure",
+																"icon": "testing-failed-icon",
+																"type": "command",
+																"command": "github.copilot.tests.fixTestFailure.fromInline"
+															},
+															{
+																"key": "F",
+																"name": "Chat: Fix test failure",
+																"icon": "testing-failed-icon",
+																"type": "command",
+																"command": "github.copilot.tests.fixTestFailure"
+															}
+														]
+													}
+												]
+											},
+											{
+												"key": "G",
+												"name": "+Peek",
+												"icon": "eye",
+												"type": "bindings",
+												"bindings": [
+													{
+														"key": "d",
+														"name": "Peek declaration",
+														"icon": "symbol-function",
+														"type": "command",
+														"command": "editor.action.peekDeclaration"
+													},
+													{
+														"key": "g",
+														"name": "Peek definition",
+														"icon": "symbol-function",
+														"type": "command",
+														"command": "editor.action.peekDefinition"
+													},
+													{
+														"key": "h",
+														"name": "Peek call hierarchy",
+														"icon": "type-hierarchy",
+														"type": "command",
+														"command": "editor.showCallHierarchy"
+													},
+													{
+														"key": "i",
+														"name": "Peek implementations",
+														"icon": "symbol-module",
+														"type": "command",
+														"command": "editor.action.peekImplementation"
+													},
+													{
+														"key": "r",
+														"name": "Peek references",
+														"icon": "symbol-reference",
+														"type": "command",
+														"command": "editor.action.referenceSearch.trigger"
+													},
+													{
+														"key": "t",
+														"name": "Peek type definition",
+														"icon": "symbol-struct",
+														"type": "command",
+														"command": "editor.action.peekTypeDefinition"
 													}
 												]
 											}
@@ -9297,6 +9710,13 @@
 										"icon": "search",
 										"type": "command",
 										"command": "workbench.action.findInFiles"
+									},
+									{
+										"key": "t",
+										"name": "Run Recent Terminal Command",
+										"icon": "terminal",
+										"type": "command",
+										"command": "workbench.action.terminal.runRecentCommand"
 									}
 								]
 							},
