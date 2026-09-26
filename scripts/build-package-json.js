@@ -4,11 +4,11 @@ const fs = require("fs");
 const path = require("path");
 const { parse } = require("jsonc-parser");
 
-const projectRoot = path.resolve(__dirname, "..");
-const packageJsonPath = path.join(projectRoot, "package.json");
-const configurationDir = path.join(projectRoot, "src", "configuration");
-const buildDir = path.join(projectRoot, "build");
-const buildPackageJsonPath = path.join(buildDir, "package.json");
+const PROJECT_ROOT = path.resolve(__dirname, "..");
+const PACKAGE_JSON_PATH = path.join(PROJECT_ROOT, "package.json");
+const CONFIGURATION_DIR = path.join(PROJECT_ROOT, "src", "configuration");
+const BUILD_DIR = path.join(PROJECT_ROOT, "build");
+const BUILD_PACKAGE_JSON_PATH = path.join(BUILD_DIR, "package.json");
 
 function ensureDirectory(dirPath) {
     fs.mkdirSync(dirPath, { recursive: true });
@@ -106,7 +106,7 @@ function mergeMainBindings(filePaths) {
     return mergedBindings;
 }
 
-function buildPackageJson(packageJsonInputPath, configurationRootDir = configurationDir) {
+function buildPackageJson(packageJsonInputPath, configurationRootDir = CONFIGURATION_DIR) {
     const packageData = readJsonc(packageJsonInputPath);
     const properties = getConfigProperties(packageData);
 
@@ -156,8 +156,8 @@ function buildPackageJson(packageJsonInputPath, configurationRootDir = configura
     return packageData;
 }
 
-function buildPackageFile(packageJsonInputPath = packageJsonPath, outputPath = buildPackageJsonPath) {
-    const packageData = buildPackageJson(packageJsonInputPath, configurationDir);
+function buildPackageFile(packageJsonInputPath = PACKAGE_JSON_PATH, outputPath = BUILD_PACKAGE_JSON_PATH) {
+    const packageData = buildPackageJson(packageJsonInputPath, CONFIGURATION_DIR);
     ensureDirectory(path.dirname(outputPath));
     writeJson(outputPath, packageData);
     return outputPath;
@@ -165,7 +165,7 @@ function buildPackageFile(packageJsonInputPath = packageJsonPath, outputPath = b
 
 function main() {
     const outputPath = buildPackageFile();
-    console.log(`Built ${outputPath} from binding fragments in ${configurationDir}`);
+    console.log(`Built ${outputPath} from binding fragments in ${CONFIGURATION_DIR}`);
 }
 
 if (require.main === module) {
