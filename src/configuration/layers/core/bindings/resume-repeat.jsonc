@@ -25,6 +25,13 @@
             "icon": "search",
             "type": "command",
             "command": "workbench.action.findInFiles"
+        },
+        {
+            "key": "t",
+            "name": "Run Recent Terminal Command",
+            "icon": "terminal",
+            "type": "command",
+            "command": "workbench.action.terminal.runRecentCommand"
         }
     ]
 }

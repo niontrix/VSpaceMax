@@ -31,7 +31,7 @@
         "command": "workbench.action.terminal.openNativeConsole"
     },
     {
-        "key": "$",
+        "key": "`",
         "name": "Run Recent Command in Terminal",
         "icon": "terminal",
         "type": "command",
